@@ -1,11 +1,12 @@
 let computerSelection;
 let playerSelection;
 
-
+//picks selection for computer
 function computerPlay () {
     let choices = ["rock","paper","scissors"]
     return choices[Math.floor(Math.random() * 3)]
 }
+//game logic for Rock Paper Scissor
 function playRps (player, computer) {
     if (player === computer) {
         return "It's a tie!";
@@ -23,7 +24,7 @@ function playRps (player, computer) {
         return "You Lose! Rock Beats Scissors";
     }
 }
-
+//plays one round of Rock Paper Scissors
 function playRound(playerSelection,computerSelection) {
     playerSelection = window.prompt("Rock, Paper or Scissors?", "");
     computerSelection = computerPlay();
@@ -38,7 +39,7 @@ function playRound(playerSelection,computerSelection) {
     
     
 }
-
+//plays 5 rounds of RPS and outputs results, ties count as loss for both players
 function game() {
     let playerCount = 0;
     let computerCount = 0;
