@@ -44,8 +44,6 @@ function game() {
     let computerCount = 0;
     for (i = 0; i <5; i++) {
         let round = playRound();
-        console.log(playerCount);
-        console.log(computerCount);
         if (round.search("tie") != -1) {
             computerCount += 0;
             playerCount += 0;
@@ -54,6 +52,8 @@ function game() {
         } else if (round.search("Win") != -1) {
             playerCount += 1;
         }
+        console.log("Player:" + playerCount);
+        console.log("Computer:" + computerCount);
     }
     
     if (playerCount === computerCount) {
