@@ -40,7 +40,7 @@ function playRound(playerSelection,computerSelection) {
     
 }
 //plays 5 rounds of RPS and outputs results, ties count as loss for both players
-function game() {
+/*function game() {
     let playerCount = 0;
     let computerCount = 0;
     for (i = 0; i <5; i++) {
@@ -66,4 +66,4 @@ function game() {
     }
 }
 
-game();
+game(); */
