@@ -1,6 +1,17 @@
 let computerSelection;
 let playerSelection;
 
+//making the images clickable and getting that to output as player choice
+
+const rock = document.getElementById('rock');
+rock.addEventListener('click', function(e) {console.log('rock')});
+const paper = document.getElementById('paper');
+paper.addEventListener('click', function(e) {console.log('paper')});
+const scissors = document.getElementById('scissors');
+scissors.addEventListener('click', function(e) {console.log('scissors')});
+
+
+
 //picks selection for computer
 function computerPlay () {
     let choices = ["rock","paper","scissors"]
@@ -39,6 +50,10 @@ function playRound(playerSelection,computerSelection) {
     
     
 }
+
+
+
+
 //plays 5 rounds of RPS and outputs results, ties count as loss for both players
 /*function game() {
     let playerCount = 0;
