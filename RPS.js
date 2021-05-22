@@ -1,15 +1,50 @@
 let computerSelection;
 let playerSelection;
-
-//making the images clickable and getting that to output as player choice
-
+let playerCount = 0;
+let computerCount = 0;
+let roundCount =0;
 const rock = document.getElementById('rock');
-rock.addEventListener('click', function(e) {console.log('rock')});
 const paper = document.getElementById('paper');
-paper.addEventListener('click', function(e) {console.log('paper')});
 const scissors = document.getElementById('scissors');
-scissors.addEventListener('click', function(e) {console.log('scissors')});
 
+
+
+
+//Event listeners to start and progress the game
+
+rock.addEventListener('click', function(e) {
+    updateScore(playRound('rock'));
+    updateRound();
+    checkWin();
+});
+
+paper.addEventListener('click', function(e) {
+    updateScore(playRound('paper'));
+    updateRound();
+    checkWin();
+});
+
+scissors.addEventListener('click', function(e) {
+    updateScore(playRound('scissors'));
+    updateRound();
+    checkWin();
+});
+
+
+//plays one round of Rock Paper Scissors with playerSelection from eventListener
+function playRound(playerSelection) {
+    computerSelection = computerPlay();
+    let result = playRps(playerSelection,computerSelection);
+    //writes result to page
+    document.getElementById('player').textContent = `Player choice: ${playerSelection}`;
+    document.getElementById('computer').textContent = `Computer choice: ${computerSelection}`;
+    document.getElementById('roundstatus').textContent = `${result}`;
+
+    return result;
+    
+    
+    
+}
 
 
 //picks selection for computer
@@ -35,50 +70,29 @@ function playRps (player, computer) {
         return "You Lose! Rock Beats Scissors";
     }
 }
-//plays one round of Rock Paper Scissors
-function playRound(playerSelection,computerSelection) {
-    playerSelection = window.prompt("Rock, Paper or Scissors?", "");
-    computerSelection = computerPlay();
-    playerSelection = playerSelection.toLowerCase();
-
-
-    let result = playRps(playerSelection,computerSelection);
-    console.log("player:" + playerSelection);
-    console.log("computer:" + computerSelection);
-    console.log(result);
-    return result;
-    
-    
-}
-
-
-
-
-//plays 5 rounds of RPS and outputs results, ties count as loss for both players
-/*function game() {
-    let playerCount = 0;
-    let computerCount = 0;
-    for (i = 0; i <5; i++) {
-        let round = playRound();
-        if (round.search("tie") != -1) {
-            computerCount += 0;
-            playerCount += 0;
-        } else if(round.search("Lose") != -1) {
-            computerCount += 1;
-        } else if (round.search("Win") != -1) {
-            playerCount += 1;
-        }
-        console.log("Player:" + playerCount);
-        console.log("Computer:" + computerCount);
+// checks if either player has reached 5
+function checkWin () {
+    if (playerCount === 5) {
+        document.getElementById('message').textContent = `You win against the robot ${playerCount} to ${computerCount}`;
+    } else if (computerCount === 5) {
+        document.getElementById('message').textContent = `You lose against the robot ${computerCount} to ${playerCount}`;
     }
-    
-    if (playerCount === computerCount) {
-        console.log(`It's a tie. Player: ${playerCount}. Computer: ${computerCount}.`)
-    } else if (playerCount > computerCount) {
-        console.log(`You won best of five. Player:${playerCount}. Computer: ${computerCount}.`)
-    } else {
-        console.log (`You lost best of five. Player:${playerCount}. Computer: ${computerCount}.`)    
+}
+function updateScore(result) {
+    if (result.search('tie') != -1) {
+        computerCount += 0;
+        playerCount += 0;
+        document.getElementById('message').textContent = `Player : ${playerCount} Computer : ${computerCount}`;
+    } else if(result.search('Win') != -1) {
+        playerCount += 1;
+        document.getElementById('message').textContent = `Player : ${playerCount} Computer : ${computerCount}`;
+    } else if (result.search('Lose') != -1) {
+        computerCount += 1;
+        document.getElementById('message').textContent = `Player : ${playerCount} Computer : ${computerCount}`;
     }
 }
 
-game(); */
+function updateRound () {
+    roundCount += 1;
+    document.getElementById('round').textContent = `Round : ${roundCount}`
+}
